@@ -3,6 +3,17 @@ class nginx::install {
         ensure => installed,
         require => Class['php']
     }
+
+    exec { 'add-apt-repository ppa:nginx':
+        command => '/usr/bin/add-apt-repository ppa:nginx/stable',
+        require => Package["python-software-properties"],
+    }
+
+    exec { 'apt-get update for latest nginx':
+        command => '/usr/bin/apt-get update',
+        before => Package['nginx'],
+        require => Exec['add-apt-repository ppa:nginx'],
+    }
 }
 
 class nginx::configure {
