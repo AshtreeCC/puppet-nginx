@@ -31,9 +31,10 @@ class nginx::run {
 
 define addServer( $site, $root ) {
     $sitesavailable = '/etc/nginx/sites-available'
-    $sitesenabled = '/etc/nginx/sites-enabled'
-    $template = 'nginx/nginx.erb'
-    $server_name = "$site"
+    $sitesenabled   = '/etc/nginx/sites-enabled'
+    $template       = 'nginx/nginx.erb'
+    $serverName     = "$site"
+    $rootPath       = "$root"
     file {"$sitesavailable/$site":
         content => template($template),
         owner   => 'root',

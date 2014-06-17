@@ -1,8 +1,8 @@
 server {
     listen 80;
-    server_name <%= server_name %>;
+    server_name <%= @serverName %>;
 
-    root <%= root %>;
+    root <%= @rootPath %>;
 
     access_log /var/log/nginx/$host-access.log;
     error_log  /var/log/nginx/$host-error.log error;
@@ -30,7 +30,7 @@ server {
     }
 
     location ~* ^/(css|img|js|flv|swf|download)/(.+)$ {
-        root <%= root %>;
+        root <%= @rootPath %>;
     }
 
     location ~ /\.ht {
